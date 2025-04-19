@@ -63,7 +63,7 @@ git clone https://github.com/YourUsername/Collaborative-Code-Editor.git
 cd Collaborative-Code-Editor
 
 2. Start all services:
-3. 
+
 docker-compose up --build
 
 --------------------------
