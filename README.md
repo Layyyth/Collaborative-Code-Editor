@@ -20,30 +20,32 @@ Key Features
 -------------------------------------------
 
 🧱Tech Stack
-Frontend: React.js, Monaco Editor, STOMP WebSockets, Nginx (for production)
-Backend: Spring Boot, WebSocket, REST API, OAuth2, Docker
-Database: MySQL 8, JPA/Hibernate
-DevOps: Docker Compose, GitHub Actions, DockerHub
+-Frontend: React.js, Monaco Editor, STOMP WebSockets, Nginx (for production)
+-Backend: Spring Boot, WebSocket, REST API, OAuth2, Docker
+-Database: MySQL 8, JPA/Hibernate
+-DevOps: Docker Compose, GitHub Actions, DockerHub
 
 ------------------------------------------
 
 📁 Folder Structure
 
-├── collaborativecodeeditor/     # Spring Boot backend
+├── collaborativecodeeditor/    Spring Boot backend
 
-├── FE/collab-editor-frontend/  # React frontend
+├── FE/collab-editor-frontend/  React frontend
 
-├── Dockerfile                  # Backend Dockerfile
+├── Dockerfile                  Backend Dockerfile
 
-├── Docker-Compose.yml          # Main orchestration file
+├── Docker-Compose.yml          Main orchestration file
 
-└── .github/workflows/          # CI/CD config
+└── .github/workflows/          CI/CD config
 ---------------------------------------
 
 How to Run Locally:
+
 1.Clone the repo:
 git clone https://github.com/YourUsername/Collaborative-Code-Editor.git
 cd Collaborative-Code-Editor
+
 2. Start all services:
 docker-compose up --build
 
