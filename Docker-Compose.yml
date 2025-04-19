@@ -1,0 +1,46 @@
+version: '3.8'
+
+services:
+  backend:
+    build: ./collaborativecodeeditor
+    container_name: code-editor-backend
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/code_editor
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: ${MYSQL_PASSWORD}  # use secret
+    depends_on:
+      - db
+    networks:
+      - code-net
+
+  frontend:
+    build: ./FE
+    container_name: code-editor-frontend
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
+    networks:
+      - code-net
+
+  db:
+    image: mysql:8
+    container_name: code-editor-db
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_PASSWORD}  # use secret
+      MYSQL_DATABASE: code_editor
+    ports:
+      - "3306:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+    networks:
+      - code-net
+
+networks:
+  code-net:
+
+volumes:
+  db_data:

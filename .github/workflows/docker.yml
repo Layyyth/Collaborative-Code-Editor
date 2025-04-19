@@ -1,0 +1,33 @@
+name: Docker CI/CD
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 🔄 Checkout code
+        uses: actions/checkout@v3
+
+      - name: 🔐 Log in to DockerHub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: 🛠️ Build Backend Image
+        run: docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/code-editor-backend ./collaborativecodeeditor
+
+      - name: 🛠️ Build Frontend Image
+        run: docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/code-editor-frontend ./FE/collab-editor-frontend
+
+      - name: 🚀 Push Backend Image
+        run: docker push ${{ secrets.DOCKERHUB_USERNAME }}/code-editor-backend
+
+      - name: 🚀 Push Frontend Image
+        run: docker push ${{ secrets.DOCKERHUB_USERNAME }}/code-editor-frontend
